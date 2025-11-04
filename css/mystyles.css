@@ -4,7 +4,7 @@
     text-transform: none;
     --bs-primary-rgb: 86, 92, 133;
     --bs-link-color: rgb(101, 113, 185);
-    --bs-link-hover-color: rgb(86, 92, 133);
+    --bs-link-hover-color: rgb(101, 113, 185);
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
@@ -28,7 +28,7 @@ a{
 }
 
 .social-icons .social-icon:hover {
-    background-color: rgb(187, 190, 209);
+    background-color: rgb(174, 183, 238);
     }
 
 nav{
