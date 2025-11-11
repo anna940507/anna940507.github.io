@@ -2,8 +2,8 @@
     --bs-body-font-family: "Noto Sans TC", Muli, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     font-weight: 400;
     text-transform: none;
-    --bs-primary-rgb: 86, 92, 133;
-    --bs-link-color: rgb(101, 113, 185);
+    --bs-primary-rgb: 138, 183, 235;
+    --bs-link-color: rgb(138, 183, 235);
     --bs-link-hover-color: rgb(101, 113, 185);
 }
 
