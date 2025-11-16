@@ -1,8 +1,23 @@
+@charset "UTF-8";
+/*
+ * 此處包含您對 styles.css 核心樣式的修改
+ */
+
+/* 1. 確保所有元素的寬度計算都包含 padding 和 border */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
-    --bs-body-font-family: "Noto Sans TC", Muli, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --bs-body-font-family: "Noto Sans TC", Muli, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 400;
     text-transform: none;
-    --bs-primary-rgb: 92, 125, 168;
+    
+    /* 統一 primary 顏色為您選擇的藍色系 */
+    --bs-primary: #5c7da8; /* 新的 Primary 顏色 */
+    --bs-primary-rgb: 92, 125, 168; 
     --bs-link-color: rgb(92, 125, 168);
     --bs-link-hover-color: rgb(101, 113, 185);
 }
@@ -21,7 +36,7 @@ h1,
 .h1 {
     font-family: "Noto Sans TC", "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 500;
-    text-transform: none
+    text-transform: none;
 }
 
 h2 {
@@ -40,8 +55,14 @@ a {
     text-decoration: none;
 }
 
+.social-icons .social-icon {
+    /* 確保社交圖標顏色與 primary 顏色一致 */
+    background-color: var(--bs-primary);
+}
+
 .social-icons .social-icon:hover {
-    background-color: rgb(194, 214, 238);
+    /* 懸停顏色使用淺色系，與您的背景色更配 */
+    background-color: rgb(194, 214, 238); 
 }
 
 nav {
@@ -52,58 +73,117 @@ nav {
     background-color: rgb(194, 214, 238);
 }
 
-.centered-image {
-    /* 步驟 1: 讓圖片變成區塊元素 */
-    display: block;
-
-    /* 步驟 2: 設定一個固定寬度（必須設定，否則置中無效） */
-    width: 400px;
-    height: auto;
-
-    /* 步驟 3: 核心置中指令 */
-    margin-left: auto;
-    margin-right: auto;
-    /* 簡寫為：margin: 0 auto; （上下邊界為 0，左右自動）*/
+/* === 水平滾動問題強化修正區塊 (主要解決白邊問題) === */
+body {
+    overflow-x: hidden !important; /* 確保徹底隱藏水平滾動條 */
+    width: 100%; /* 確保 body 寬度為 100% 視口 */
 }
 
+/* 修正 Bootstrap .row 類的負邊距問題 */
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* 修正 .row 的子元素 .col 的 padding，避免與上面的修正衝突 */
+.col, [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* 確保主內容區塊沒有水平邊距 */
+.container-fluid.p-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+/* ==================================================== */
+
+/* 圖片置中 */
+.centered-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 照片容器 */
 .photo-container {
-    /* 啟用 Flexbox */
     display: flex;
-
-    /* 讓照片在容器內平均分配空間 */
     justify-content: space-between;
-
-    /* 設定容器最大寬度，避免排版過寬 */
     max-width: 900px;
     margin: 0 auto;
-    /* 讓容器置中 */
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    gap: 10px; /* 新增間距以優化佈局 */
 }
 
 .photo-container img {
-    /* 設定每張照片的寬度佔容器的比例（例如略小於 1/3） */
-    width: 30%;
-
-    /* 確保高度自動調整，維持比例 */
+    width: calc(33.33% - 10px); /* 重新計算寬度以包含新增的 gap */
+    max-width: 100%;
     height: auto;
-
-    /* (可選) 讓圖片看起來更美觀 */
     object-fit: cover;
     border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
+/* 文字置中 */
 .centered-text-container {
-    /* 核心指令：將容器內的所有「行內元素」（文字、圖片等）水平置中 */
     text-align: center;
 }
 
-.image-box {
-    /* 讓元素浮動到左側 */
-    float: left;
-    /* 設置每張圖片的寬度 (33.33% 接近三等分) */
-    width: 33.33%;
-    /* 可選：為間距預留空間，但會讓計算變複雜，需使用 box-sizing */
-    padding: 0 10px;
-    box-sizing: border-box;
-    /* 讓 padding 不會增加整體寬度 */
+/* 清除浮動 */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
+/* 三等分圖片浮動 */
+.image-box {
+    float: left;
+    width: 33.33%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* --- RWD Optimization for Small Screens (Max-width: 767px) --- */
+@media (max-width: 767px) {
+    /* 讓三張圖片變成兩張一列 */
+    .photo-container {
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    .photo-container img {
+        width: 48%; /* 讓兩張圖片各佔約一半寬度 */
+        margin-bottom: 10px;
+    }
+    
+    /* 讓原本的三等分圖片(用於 Skills 區塊)也變成兩張一列 */
+    .image-box {
+        width: 50%;
+        padding: 0 5px;
+    }
+    
+    /* 讓單張置中圖片在手機上不再有最大寬度限制 */
+    .centered-image {
+        max-width: 100%; 
+    }
+}
+
+/* 針對極小螢幕（如舊型手機）全部單列顯示 */
+@media (max-width: 480px) {
+    .photo-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .photo-container img {
+        width: 90%; /* 單張圖片佔滿寬度 */
+    }
+    .image-box {
+        width: 100%;
+    }
+}
