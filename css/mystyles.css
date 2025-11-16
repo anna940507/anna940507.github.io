@@ -1,9 +1,19 @@
-@charset "UTF-8";
-/*
- * 此處包含您對 styles.css 核心樣式的修改
- */
+html, body {
+    /* 1. 確保寬度為 100% 視窗，沒有多餘空間 */
+    width: 100%;
+    
+    /* 2. 嚴格強制隱藏水平溢出 */
+    overflow-x: hidden !important;
+    
+    /* 3. 確保使用標準的盒模型計算 (如果您還沒有加) */
+    box-sizing: border-box;
+}
 
-/* 1. 確保所有元素的寬度計算都包含 padding 和 border */
+/* 如果您還沒有這個通用規則，請加上，避免元素因 padding/border 溢出 */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
@@ -132,58 +142,4 @@ body {
 /* 文字置中 */
 .centered-text-container {
     text-align: center;
-}
-
-/* 清除浮動 */
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* 三等分圖片浮動 */
-.image-box {
-    float: left;
-    width: 33.33%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-/* --- RWD Optimization for Small Screens (Max-width: 767px) --- */
-@media (max-width: 767px) {
-    /* 讓三張圖片變成兩張一列 */
-    .photo-container {
-        justify-content: space-around;
-        gap: 10px;
-    }
-
-    .photo-container img {
-        width: 48%; /* 讓兩張圖片各佔約一半寬度 */
-        margin-bottom: 10px;
-    }
-    
-    /* 讓原本的三等分圖片(用於 Skills 區塊)也變成兩張一列 */
-    .image-box {
-        width: 50%;
-        padding: 0 5px;
-    }
-    
-    /* 讓單張置中圖片在手機上不再有最大寬度限制 */
-    .centered-image {
-        max-width: 100%; 
-    }
-}
-
-/* 針對極小螢幕（如舊型手機）全部單列顯示 */
-@media (max-width: 480px) {
-    .photo-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .photo-container img {
-        width: 90%; /* 單張圖片佔滿寬度 */
-    }
-    .image-box {
-        width: 100%;
-    }
 }
