@@ -107,27 +107,3 @@ nav {
     /* 讓 padding 不會增加整體寬度 */
 }
 
-
-.photo-container2 {
-    display: flex;
-    align-items: flex-start;
-    /* 讓圖片頂部對齊 */
-    justify-content: center;
-    /* 讓整個群組置中 */
-    gap: 20px;
-    /* 設定圖片之間的間距 */
-
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.photo-container img {
-    /* 嘗試增加高度，例如從 180px 增加到 250px 甚至更高 */
-    height: 245px;
-    /* **請根據您的實際圖片和設計調整此值** */
-
-    width: auto;
-    object-fit: contain;
-    /* 確保圖片完整顯示，不會裁切 */
-    border: 1px solid #ccc;
-}
